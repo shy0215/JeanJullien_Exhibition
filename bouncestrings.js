@@ -1,6 +1,6 @@
 import { lineCircle } from "./utils.js";
 
-const BOUNCE = 0.92;
+const BOUNCE = 0.62;
 
 export class BounceString{
   constructor(pos, color){
@@ -15,7 +15,7 @@ export class BounceString{
         ox: pos.x1,
         oy: pos.y1,
         vx: 0,
-        vy: 0
+        vy: 0,
       },
       {
         x: middleX,
@@ -23,7 +23,7 @@ export class BounceString{
         ox: middleX,
         oy: middleY,
         vx: 0,
-        vy: 0
+        vy: 0,
       },
       {
         x:pos.x2,
@@ -31,7 +31,7 @@ export class BounceString{
         ox: pos.x2,
         oy: pos.y2,
         vx: 0,
-        vy: 0
+        vy: 0,
       },
     ];
 
@@ -42,13 +42,13 @@ export class BounceString{
   animate(ctx, moveX, moveY){
 
     ctx.beginPath();
-    ctx.fillStyle = "#ff00ff";
-    ctx.arc(moveX, moveY, 20, 0, Math.PI * 2, false); //원크기 조절
+    ctx.fillStyle = "#000";
+    ctx.arc(moveX, moveY, 15, 0, Math.PI * 2, false); //원크기 조절
     ctx.fill();
 
     ctx.beginPath();
-    ctx.strokeStyle = this.color;
-    ctx.lineWidth = 4;
+    ctx.strokeStyle = "#fff";//"#E45420";
+    ctx.lineWidth = 6;
 
     if(lineCircle(
       this.points[0].x,
@@ -59,7 +59,7 @@ export class BounceString{
       moveY,
       this.detect,
     )) { 
-      this.detect = 300; //줄 튕김 정도 조절
+      this.detect = 250; //줄 튕김 정도 조절
       let tx = (this.points[1].ox + moveX) / 2;
       let ty = moveY;
       this.points[1].vx = tx - this.points[1].x;
@@ -77,6 +77,7 @@ export class BounceString{
     this.points[1].x += this.points[1].vx;
     this.points[1].y += this.points[1].vy;
 
+    //stroke 보이게
     let prevX = this.points[0].x;
     let prevY = this.points[0].y;
 
@@ -94,7 +95,5 @@ export class BounceString{
 
     ctx.lineTo(prevX, prevY);
     ctx.stroke();
-
-
   }
 }

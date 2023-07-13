@@ -30,8 +30,8 @@ class App{
         this.canvas.height = this.stageHeight * this.pixelRatio;
         this.ctx.scale(this.pixelRatio, this.pixelRatio);
          
-        const xGap = 20;
-        const yGap = 20;
+        const xGap = 18;
+        const yGap = 18;
         const x1 = xGap;
         const x2 = this.stageWidth - xGap;
         const total = Math.floor((this.stageHeight - yGap) / yGap);
@@ -44,7 +44,7 @@ class App{
                     x1: x1,
                     y1: i * yGap + yGap,
                     x2: x2,
-                    x2: i * yGap + yGap,
+                    y2: i * xGap + xGap,
                   },
                   '#ff5038'
             )
@@ -56,9 +56,9 @@ class App{
 
         this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
 
-        if(this.strings.length > 0 ){
-            for(let i = 0; i < this.strings.length; i++){
-                this.strings[i].animate(this.ctx, this.moveX, this.moveY);
+        if (this.strings.length > 0 ) {
+            for (let i = 0; i < this.strings.length; i++){
+              this.strings[i].animate(this.ctx, this.moveX, this.moveY);
             }
         }
     }
